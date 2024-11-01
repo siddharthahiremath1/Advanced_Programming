@@ -69,7 +69,7 @@ class Trapezoid:
             return y>((self.h)/2-self.y) and y<((self.h)/2+self.y) and y<(self.h/(self.b-(self.a/2)))*(x+(self.a/2))+(self.h/2)+ self.y and y<(-self.h/(self.b-(self.a/2)))*(x-(self.a/2))+(self.h/2)+self.y
         else:
             return y>((self.h)/2-self.y) and y<((self.h)/2+self.y) and y>(self.h/(self.b-(self.a/2)))*(x+(self.a/2))+(self.h/2)+ self.y and y>(-self.h/(self.b-(self.a/2)))*(x-(self.a/2))+(self.h/2)+self.y
-class 
+class Hexagon
 
             
 
