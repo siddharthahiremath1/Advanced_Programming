@@ -1,2 +1,2 @@
-#first block
+#first block gets hashed, then gets
 #second 
