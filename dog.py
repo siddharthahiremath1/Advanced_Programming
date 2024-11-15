@@ -3,7 +3,7 @@ import hashlib
 import time
 from multiprocessing import Process, cpu_count
 string = "freedom"
-zeros = 7
+zeros = 6
 
 def logan(nonce):
     start_time = time.time()
