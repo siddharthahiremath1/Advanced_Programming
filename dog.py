@@ -1,18 +1,17 @@
-
 import hashlib
 import time
 from multiprocessing import Process, cpu_count
 string = "freedom"
-zeros = 6
+zeros = 9
 
 def logan(nonce):
     start_time = time.time()
-    nonce1 = nonce
+    nonce1 = nonce + 16
     bhash = '031edd7d41651593c5fe5c006fa5752b37fddff7bc4e843aa6af0c950f4b9406'
     zerostr = '0'*zeros
     while bhash[:zeros]!=zerostr:
         bhash = hashlib.sha256(bytes(string+str(nonce1), 'utf-8')).hexdigest()
-        nonce1 += cpu_count()
+        nonce1 += 32
     end_time = time.time()
 
     print("Done!")
