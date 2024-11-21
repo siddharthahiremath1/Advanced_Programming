@@ -41,15 +41,8 @@ def logan(points, n, start):
     print("id no."+str(n)+" completed")
     #f = open("Advanced_Programming/demofile.txt")
     print(str(shortest)+" "+str(shortest_order))
-    #if float(f.read().split(" ")[0])>shortest:
-        #f = open("Advanced_Programming/demofile.txt", "w")
-        #f.write(str(shortest)+" "+str(shortest_order))
-        #print(str(shortest)+" "+str(shortest_order))
         
 
-        
-    
-    
 
 
 if __name__ == '__main__':
