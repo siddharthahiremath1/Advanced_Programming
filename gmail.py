@@ -8,3 +8,4 @@ class Email():
 
 def getopenai(prompt, model):
     return "couldnt care less"
+
