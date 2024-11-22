@@ -39,7 +39,7 @@ def logan(points, n, start):
     print("id no."+str(n)+" completed")
     #f = open("Advanced_Programming/demofile.txt")
     print(str(shortest)+" "+str(shortest_order))
-        
+
 
 
 
