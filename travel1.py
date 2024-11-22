@@ -38,7 +38,14 @@ def logan(points, n, start,num,array):
             shortest_order = i1
     if num.value>shortest:
         num.value = shortest
-        array.value = shortest_order
+        listb = []
+        for i in shortest_order:
+            listb.append(i[0])
+            listb.append(i[1])
+        for i in range(len(array)):
+            array[i] = listb[i]
+
+        array = listb
     print("id no."+str(n)+" completed")
     #f = open("Advanced_Programming/demofile.txt")
     print(str(shortest)+" "+str(shortest_order))
@@ -49,7 +56,7 @@ def logan(points, n, start,num,array):
 if __name__ == '__main__':
     global permu
     num = Value('d',1000000000.0)
-    array = Array(tuple, 12)
+    array = Array('i', 12)
     thread_count = cpu_count()
     l = setup()
     points = l[0]
@@ -72,6 +79,8 @@ if __name__ == '__main__':
     for i in threads:
         i.join()
     print(num.value)
+    for i in array:
+        print(i)
     end_time = time.time()
     print("Done! Time to calculate: " + str(end_time-start_time))
     for i in threads:
