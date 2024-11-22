@@ -1,21 +1,21 @@
 import math
 import itertools
 import random
-from multiprocessing import Process, cpu_count
+from multiprocessing import Process, cpu_count, Value
 import time
 def split(a, n):
     k, m = divmod(len(a), n)
     return (a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n))
 def setup():
+    global percentage
+    percentage = 0
     f = open("Advanced_Programming/demofile.txt", "w")
     f.write('1000000000000000')
     t = open("Advanced_Programming/database.txt")
     b = t.read().split("\n")
     start = (int(b[0].split(" ")[1]),int(b[0].split(" ")[2]))
-    print(start)
     points = []
     for i in range(len(b)-1):
-       print(i)
        points.append((int(b[i+1].split(" ")[1]),int(b[i+1].split(" ")[2])))
     
     return (points,start)
@@ -23,9 +23,7 @@ def setup():
 def getdistance(point1, point2):
     return math.sqrt(((point1[0]-point2[0])**2)+(point1[1]-point2[1])**2)
 def logan(points, n, start):
-    global bestsolution
     points1 = list(points)
-    
     shortest = 1000000000000000000
     shortest_order = None
     for i in points1:
@@ -46,12 +44,21 @@ def logan(points, n, start):
 
 
 if __name__ == '__main__':
+    global permu
     thread_count = cpu_count()
     l = setup()
     points = l[0]
     start = l[1]
+    print(f"CPU Count: {thread_count}")
+    print("Calculating all permutations:")
     permu = itertools.permutations(points, len(points))
-    splits = list(split(list(permu), thread_count))
+    permu = list(permu)
+    print("Permutations Done!")
+    print("Splitting List:")
+    splits = list(split(permu, thread_count))
+    print("Done!")
+    print(f"{len(permu)} Permutations to calculate")
+    print(f"Est. Time = {52.35404658317566*len(permu)/39916800} secs")
     #logan(splits[1],1)
     threads = [Process(target=logan, args=(splits[y],y,start)) for y in range(thread_count)]
     start_time =time.time()
@@ -60,6 +67,6 @@ if __name__ == '__main__':
     for i in threads:
         i.join()
     end_time = time.time()
-    print("time: " + str(end_time-start_time))
+    print("Done! Time to calculate: " + str(end_time-start_time))
     for i in threads:
         i.terminate()
