@@ -1,7 +1,7 @@
 import math
 import itertools
 import random
-from multiprocessing import Process, cpu_count, Value
+from multiprocessing import Process, cpu_count, Value, Array
 import time
 def split(a, n):
     k, m = divmod(len(a), n)
@@ -22,7 +22,7 @@ def setup():
 
 def getdistance(point1, point2):
     return math.sqrt(((point1[0]-point2[0])**2)+(point1[1]-point2[1])**2)
-def logan(points, n, start):
+def logan(points, n, start,num,array):
     points1 = list(points)
     shortest = 1000000000000000000
     shortest_order = None
@@ -36,6 +36,9 @@ def logan(points, n, start):
         if shortest>distance:
             shortest = distance
             shortest_order = i1
+    if num.value>shortest:
+        num.value = shortest
+        array.value = shortest_order
     print("id no."+str(n)+" completed")
     #f = open("Advanced_Programming/demofile.txt")
     print(str(shortest)+" "+str(shortest_order))
@@ -45,6 +48,8 @@ def logan(points, n, start):
 
 if __name__ == '__main__':
     global permu
+    num = Value('d',1000000000.0)
+    array = Array(tuple, 12)
     thread_count = cpu_count()
     l = setup()
     points = l[0]
@@ -60,12 +65,13 @@ if __name__ == '__main__':
     print(f"{len(permu)} Permutations to calculate")
     print(f"Est. Time = {52.35404658317566*len(permu)/39916800} secs")
     #logan(splits[1],1)
-    threads = [Process(target=logan, args=(splits[y],y,start)) for y in range(thread_count)]
+    threads = [Process(target=logan, args=(splits[y],y,start, num, array)) for y in range(thread_count)]
     start_time =time.time()
     for i in threads:
         i.start()
     for i in threads:
         i.join()
+    print(num.value)
     end_time = time.time()
     print("Done! Time to calculate: " + str(end_time-start_time))
     for i in threads:
