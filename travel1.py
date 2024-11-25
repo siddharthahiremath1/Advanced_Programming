@@ -46,9 +46,7 @@ def logan(points, n, start,num,array):
             array[i] = listb[i]
 
         array = listb
-    print("id no."+str(n)+" completed")
-    #f = open("Advanced_Programming/demofile.txt")
-    print(str(shortest)+" "+str(shortest_order))
+    print(f"{n}/{cpu_count()} completed")
 
 
 
@@ -78,9 +76,9 @@ if __name__ == '__main__':
         i.start()
     for i in threads:
         i.join()
-    print(num.value)
-    for i in array:
-        print(i)
+    print(f"Shortest distance: {num.value}")
+    print(f"Solution: {str(list(array))}")
+
     end_time = time.time()
     print("Done! Time to calculate: " + str(end_time-start_time))
     for i in threads:
