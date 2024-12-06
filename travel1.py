@@ -17,6 +17,7 @@ def setup():
     points = []
     for i in range(len(b)-1):
        points.append((int(b[i+1].split(" ")[1]),int(b[i+1].split(" ")[2])))
+    points = points[0:(int(input("how many datapoints")))]
     
     return (points,start)
 
