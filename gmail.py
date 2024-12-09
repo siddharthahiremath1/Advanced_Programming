@@ -6,14 +6,10 @@ class Email():
         self.subject = subject
         self.body = body
     def log_data(self):
-        
         print(self.name)
         print(self.email)
         print(self.ccemail)
         print(self.subject)
         print(self.body)
 
-        
 
-def getopenai(prompt, model):
-    return "couldnt care less"

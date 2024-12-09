@@ -1,8 +1,9 @@
+from __future__ import absolute_import, division, print_function
+
 import os
 # Keep using keras-2 (tf-keras) rather than keras-3 (keras).
 os.environ['TF_USE_LEGACY_KERAS'] = '1'
 
-from __future__ import absolute_import, division, print_function
 
 import base64
 import imageio
@@ -11,7 +12,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import PIL.Image
-import pyvirtualdisplay
 import reverb
 
 import tensorflow as tf
